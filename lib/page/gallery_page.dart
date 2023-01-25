@@ -26,6 +26,19 @@ class GalleryPage extends StatelessWidget {
           maxScale: PhotoViewComputedScale.covered * 2,
         ),
         scrollDirection: Axis.horizontal,
+        loadingBuilder: (context, event) => Center(
+          child: Container(
+            width: 30.0,
+            height: 30.0,
+            child: CircularProgressIndicator(
+              backgroundColor: Colors.orange,
+              value: event == null
+                  ? 0
+                  : event.cumulativeBytesLoaded /
+                      (event.expectedTotalBytes as int),
+            ),
+          ),
+        ),
       ),
     );
   }
